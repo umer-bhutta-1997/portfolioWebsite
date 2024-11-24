@@ -11,7 +11,12 @@ function Navbar() {
     <header className="bg-gray-900 text-gray-300 sticky top-0 z-50 shadow-md">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div>
+        <div className="flex items-center gap-2">
+          <img
+            src="/a1png.png" // Path to the logo file
+            alt="Logo"
+            className="w-10 h-10"
+          />
           <a
             href="/"
             className="text-2xl font-bold text-white hover:text-indigo-400 transition"
@@ -54,7 +59,7 @@ function Navbar() {
           className="md:hidden text-white hover:text-indigo-400 transition"
           aria-label="Toggle navigation menu"
         >
-          {isMobileMenuOpen ? "✖" : "☰"}
+          {isMobileMenuOpen ? '✖' : '☰'}
         </button>
       </div>
 
