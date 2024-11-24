@@ -4,8 +4,8 @@ export const Header = () => {
     <header className="bg-gray-900 text-gray-300">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <div>
-          <a href="/" className="text-2xl font-bold text-white hover:text-indigo-400 transition">
-            Muhammad Azaz
+          <a href="https://www.linkedin.com/company/candle-io" className="text-2xl font-bold text-white hover:text-indigo-400 transition">
+            Candle.io
           </a>
         </div>
         <nav className="flex gap-6">
