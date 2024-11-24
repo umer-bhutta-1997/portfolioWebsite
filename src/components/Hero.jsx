@@ -67,7 +67,10 @@ export default function Hero() {
       {/* Main Content */}
       <div className="relative z-10 px-6 md:px-20 max-w-5xl">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-          Hi, I’m <span className="text-indigo-400">Muhammad Umer Bhutta</span>
+        <span className="block text-white drop-shadow-lg font-serif">
+          السلام عليكم
+        </span>
+         I’m <span className="text-indigo-400">Muhammad Umer Bhutta</span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-gray-300 leading-relaxed">
           I’m an <span className="text-indigo-400">AI Engineer</span> with expertise in{" "}
@@ -83,7 +86,7 @@ export default function Hero() {
             <span className="text-5xl md:text-6xl font-bold text-indigo-400">
               {projects}+ {/* Dynamic Projects */}
             </span>
-            <p className="text-lg font-medium text-gray-300">Projects Delivered</p>
+            <p className="text-lg font-medium text-gray-300">Projects Completed</p>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-5xl md:text-6xl font-bold text-indigo-400">

@@ -1,19 +1,26 @@
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import About from '../components/About';
-import Projects from '../components/Projects';
-import Services from '../components/Services';
-import Contact from '../components/Contact';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Projects from './components/Projects';
+import Services from './components/Services';
+import Contact from './components/Contact';
+import Experience from './components/Experience';
 
-export default function Home() {
+function App() {
   return (
-    <div>
+    <Router>
       <Navbar />
-      <Hero />
-      <About id="about" />
-      <Projects id="projects" />
-      <Services id="services" />
-      <Contact id="contact" />
-    </div>
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/experience" element={<Experience />} />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
