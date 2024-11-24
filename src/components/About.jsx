@@ -29,18 +29,19 @@ export default function About() {
             I have delivered <span className="font-bold text-indigo-400">10+ AI-driven projects</span>, ranging from intelligent automation tools to scalable data pipelines. My strong foundation in <span className="font-bold text-indigo-400">Python</span> enables me to design, develop, and deploy applications efficiently while ensuring performance and reliability.
           </p>
           <div className="mt-6 flex justify-center md:justify-start gap-4">
-            <a
-              href="#"
-              className="px-4 py-2 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 transition"
-            >
-              Download Resume
-            </a>
-            <a
-              href="#projects"
-              className="px-4 py-2 border border-indigo-500 text-indigo-500 font-semibold rounded-lg hover:bg-indigo-500 hover:text-white transition"
-            >
-              View Projects
-            </a>
+          <a
+            href="/UmerBhutta_AL_NLP_resume.pdf" // Path to the file in the `public` folder
+            download="Muhammad-Umer-Bhutta-Resume.pdf" // Optional: rename the downloaded file
+            className="px-6 py-3 border-2 border-indigo-500 text-indigo-500 font-bold rounded-full shadow-lg hover:bg-indigo-500 hover:text-white transition"
+          >
+            Download Resume
+          </a>
+          <a
+            href="#projects"
+            className="px-6 py-3 bg-indigo-500 text-white font-bold rounded-full shadow-lg hover:bg-indigo-600 transition"
+          >
+            Projects
+          </a>
           </div>
         </div>
       </div>

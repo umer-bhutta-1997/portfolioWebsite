@@ -12,38 +12,39 @@ export default function Hero() {
         { duration: "March 2024 - Present" },
         { duration: "August 2022 - February 2024" },
       ];
-    
+
       let totalMonths = 0; // Track total months of experience
       const currentDate = new Date(); // Current date
-    
+
       experiences.forEach(({ duration }) => {
         const [start, end] = duration.split(" - ");
         const startDate = new Date(start);
         const endDate = end === "Present" ? currentDate : new Date(end);
-    
+
         // Calculate the difference in months
         const months =
           (endDate.getFullYear() - startDate.getFullYear()) * 12 +
           (endDate.getMonth() - startDate.getMonth());
         totalMonths += months;
       });
-    
+
       // Convert total months into years
       const totalYears = totalMonths / 12;
-    
+
       // Round up if experience exceeds 2.5 years
-      const roundedYears = totalYears > 2.5 ? Math.ceil(totalYears) : Math.floor(totalYears);
-    
+      const roundedYears =
+        totalYears > 2.5 ? Math.ceil(totalYears) : Math.floor(totalYears);
+
       // Set the calculated years of experience
       setExperience(roundedYears);
     };
-    
-    
 
     // Function to fetch projects and count them
     const fetchProjects = async () => {
       try {
-        const response = await fetch("https://api.github.com/users/umer-bhutta-1997/repos");
+        const response = await fetch(
+          "https://api.github.com/users/umer-bhutta-1997/repos"
+        );
         const data = await response.json();
         const totalProjects = data.filter((repo) => !repo.fork).length;
         setProjects(totalProjects);
@@ -67,32 +68,39 @@ export default function Hero() {
       {/* Main Content */}
       <div className="relative z-10 px-6 md:px-20 max-w-5xl">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-        <span className="block text-white drop-shadow-lg font-serif">
-          السلام عليكم
-        </span>
-         I’m <span className="text-indigo-400">Muhammad Umer Bhutta</span>
+          <span className="block text-white drop-shadow-lg font-serif">
+            السلام عليكم
+          </span>
+          I’m <span className="text-indigo-400">Muhammad Umer Bhutta</span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-gray-300 leading-relaxed">
-          I’m an <span className="text-indigo-400">AI Engineer</span> with expertise in{" "}
+          I’m an <span className="text-indigo-400">AI Engineer</span> with
+          expertise in{" "}
           <span className="text-blue-400">Large Language Models (LLMs)</span>,{" "}
           <span className="text-purple-400">Natural Language Processing (NLP)</span>, and{" "}
-          <span className="text-indigo-400">scalable web solutions</span>. Passionate about leveraging{" "}
-          <span className="text-indigo-400">AI</span> to drive innovation and solve complex challenges.
+          <span className="text-indigo-400">scalable web solutions</span>.
+          Passionate about leveraging{" "}
+          <span className="text-indigo-400">AI</span> to drive innovation and
+          solve complex challenges.
         </p>
-        
+
         {/* Metrics */}
         <div className="mt-12 flex flex-wrap justify-center gap-16">
           <div className="flex flex-col items-center">
             <span className="text-5xl md:text-6xl font-bold text-indigo-400">
               {projects}+ {/* Dynamic Projects */}
             </span>
-            <p className="text-lg font-medium text-gray-300">Projects Completed</p>
+            <p className="text-lg font-medium text-gray-300">
+              Projects Completed
+            </p>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-5xl md:text-6xl font-bold text-indigo-400">
               {experience}+ {/* Dynamic Experience */}
             </span>
-            <p className="text-lg font-medium text-gray-300">Years of Experience</p>
+            <p className="text-lg font-medium text-gray-300">
+              Years of Experience
+            </p>
           </div>
         </div>
 
@@ -105,7 +113,8 @@ export default function Hero() {
             Projects
           </a>
           <a
-            href="#resume"
+            href="/UmerBhutta_AL_NLP_resume.pdf" // Path to the file in the `public` folder
+            download="Muhammad-Umer-Bhutta-Resume.pdf" // Optional: rename the downloaded file
             className="px-6 py-3 border-2 border-indigo-500 text-indigo-500 font-bold rounded-full shadow-lg hover:bg-indigo-500 hover:text-white transition"
           >
             Download Resume
