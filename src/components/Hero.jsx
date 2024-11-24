@@ -12,18 +12,33 @@ export default function Hero() {
         { duration: "March 2024 - Present" },
         { duration: "August 2022 - February 2024" },
       ];
-      let totalYears = 0;
-      const currentYear = new Date().getFullYear();
-
+    
+      let totalMonths = 0; // Track total months of experience
+      const currentDate = new Date(); // Current date
+    
       experiences.forEach(({ duration }) => {
         const [start, end] = duration.split(" - ");
-        const startYear = new Date(start).getFullYear();
-        const endYear = end === "Present" ? currentYear : new Date(end).getFullYear();
-        totalYears += endYear - startYear;
+        const startDate = new Date(start);
+        const endDate = end === "Present" ? currentDate : new Date(end);
+    
+        // Calculate the difference in months
+        const months =
+          (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+          (endDate.getMonth() - startDate.getMonth());
+        totalMonths += months;
       });
-
-      setExperience(totalYears);
+    
+      // Convert total months into years
+      const totalYears = totalMonths / 12;
+    
+      // Round up if experience exceeds 2.5 years
+      const roundedYears = totalYears > 2.5 ? Math.ceil(totalYears) : Math.floor(totalYears);
+    
+      // Set the calculated years of experience
+      setExperience(roundedYears);
     };
+    
+    
 
     // Function to fetch projects and count them
     const fetchProjects = async () => {
