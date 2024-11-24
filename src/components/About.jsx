@@ -17,7 +17,7 @@ export default function About() {
         </div>
         <div className="text-center md:text-left max-w-lg">
           <p className="text-lg leading-relaxed">
-            Hi! I’m <span className="font-bold text-indigo-400">Muhammad Umer Bhutta</span>, an <span className="font-bold text-indigo-400">AI Engineer</span> with <span className="font-bold text-indigo-400">3+ years of experience</span> in designing and implementing intelligent solutions that integrate **Artificial Intelligence** into existing systems and workflows, enhancing their capabilities and scalability.
+            Hi! I’m <span className="font-bold text-indigo-400">Muhammad Umer Bhutta</span>, an <span className="font-bold text-indigo-400">AI Engineer</span> with <span className="font-bold text-indigo-400">2+ years of experience</span> in designing and implementing intelligent solutions that integrate **Artificial Intelligence** into existing systems and workflows, enhancing their capabilities and scalability.
           </p>
           <p className="mt-4 leading-relaxed">
             My expertise includes working with <span className="font-bold text-indigo-400">Large Language Models (LLMs)</span>, <span className="font-bold text-indigo-400">Natural Language Processing (NLP)</span>, and <span className="font-bold text-indigo-400">Python</span> to deliver high-impact AI solutions. I specialize in creating scalable, maintainable systems tailored to meet unique business challenges.
