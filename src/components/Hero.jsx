@@ -10,7 +10,7 @@ export default function Hero() {
       const experiences = [
         { duration: "October 2024 - Present" },
         { duration: "March 2024 - Present" },
-        { duration: "August 2022 - February 2024" },
+        { duration: "August 2021 - February 2024" },
       ];
 
       let totalMonths = 0; // Track total months of experience
