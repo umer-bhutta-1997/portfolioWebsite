@@ -3,5 +3,13 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+  variants: {
+    extend: {
+      // enable prose color variants in dark mode
+      typography: ['dark'],
+    },
+  },
 };

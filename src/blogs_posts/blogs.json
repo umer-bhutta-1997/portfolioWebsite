@@ -1,0 +1,27 @@
+[
+    {
+      "title": "Ultimate Step-by-Step Guide to Building a RAG Chatbot from Scratch",
+      "slug": "ultimate-step-by-step-guide-rag-chatbot",
+      "description": "Learn how to build a powerful Retrieval-Augmented Generation (RAG) chatbot from scratch with our step-by-step guide, using Python, FAISS, and the OpenAI API.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2025-05-07",
+      "image": "/blog_image_1.png"
+    },
+    {
+      "title": "Prompt Engineering 101: Best Practices for Crafting Effective Queries",
+      "slug": "prompt-engineering-101",
+      "description": "Master prompt engineering for GPT-4, LLaMA 3, and Gemma with practical techniques—from zero-shot and few-shot to chain-of-thought and role-based prompting—illustrated with examples and visual guides.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2025-05-07",
+      "image": "/prompt-engineering-101.png"
+    },
+    {
+      "title": "Fine-Tuning vs. In-Context Learning: Customizing LLMs for Your Workflow",
+      "slug": "fine-tuning-vs-in-context",
+      "description": "Compare approaches for tailoring models to your domain—including full fine-tuning, parameter-efficient tuning (LoRA), and prompt-based methods—with real healthcare use cases and practical trade-offs.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2025-05-07",
+      "image": "/fine-tuning-vs-in-context.png"
+    }
+  ]
+  
