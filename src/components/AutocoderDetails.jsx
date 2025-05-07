@@ -107,7 +107,7 @@ const AutocoderDetails = () => {
             Experience the power of AI-driven RPA with Autocoder. Automate your workflows and boost your efficiency today!
           </p>
           <a
-            href="/contact"
+            href="/#contact"
             className="inline-block px-6 py-3 bg-indigo-600 text-white font-bold rounded-md shadow-md hover:bg-indigo-700 transition"
           >
             Contact Us to Learn More
