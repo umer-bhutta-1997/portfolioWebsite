@@ -11,6 +11,7 @@ import Experience from "./components/Experience";
 import Services from "./components/Services";
 import Blogs from "./components/BlogList";
 import BlogPost from "./components/BlogPost";
+import AutocoderDetails from "./components/AutocoderDetails";
 import matter from "gray-matter";
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
               </>
             }
           />
-
+          <Route path="/projects/autocoder" element={<AutocoderDetails />} />
           {/* Blogs Page */}
           <Route path="/blogs" element={<Blogs blogs={blogs} />} />
 
