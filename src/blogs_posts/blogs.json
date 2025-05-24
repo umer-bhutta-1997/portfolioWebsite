@@ -22,6 +22,14 @@
       "author": "Muhammad Umer Bhutta",
       "date": "2025-05-07",
       "image": "/fine-tuning-vs-in-context.png"
+    },
+    {
+    "title": "Introduction to LangChain: Building Blocks for LLM Applications",
+    "slug": "introduction-to-langchain-llm-applications",
+    "description": "Learn LangChain's essential building blocks like chains, prompt templates, and memory, and build a conversational RAG system using Python, Hugging Face, and open-source LLMs like Llama 3.",
+    "author": "Muhammad Umer Bhutta",
+    "date": "2025-05-24",
+    "image": "/langchain-intro.png"
     }
   ]
   
