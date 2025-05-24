@@ -1,5 +1,5 @@
 # Introduction to LangChain: Building Blocks for LLM Applications
-
+![Image Not Found](/langchain-intro.png "Optional title")
 Welcome aboard the LangChain Express, your trusty guide through the jungle of large language models (LLMs)! Whether you're a coding guru, a GenAI enthusiast, or simply curious about how to chain your favorite LLM, you've landed in the perfect spot.
 
 Today, we'll unravel LangChain—an open-source framework designed to simplify developing robust applications with large language models. We'll explore essential building blocks like chains, prompt templates, memory, and how to build your own Retrieval-Augmented Generation (RAG) system with a sprinkle of conversational memory. Ready? Let’s dive in!
