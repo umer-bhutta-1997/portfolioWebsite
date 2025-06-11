@@ -30,6 +30,14 @@
     "author": "Muhammad Umer Bhutta",
     "date": "2025-05-24",
     "image": "/langchain-intro.png"
+    },
+    {
+    "title": "LangGraph 101: Building Stateful AI Workflows in Python",
+    "slug": "langgraph-101-building-stateful-ai-workflows-in-python",
+    "description": "A beginner-friendly guide to LangGraph, covering Python building blocks, core concepts like state, nodes, edges, conditional logic, tools, and messages for building stateful AI agent workflows on top of LangChain.",
+    "author": "Muhammad Umer Bhutta",
+    "date": "2025-06-11",
+    "image": "/langgraph-101.png"
     }
   ]
   
