@@ -82,43 +82,43 @@ import React from "react";
 
 const Experience = () => {
   const experiences = [
-    {
-      title: "Senior AI Engineer",
-      company: "Rawa'a",
-      duration: "October 2024 - Present",
-      type: "Part-Time",
-      responsibilities: [
-        "Enhanced the scalability and performance of the stock price prediction model through architectural improvements.",
-        "Achieved significant accuracy gains and reduced loss in model predictions by integrating advanced features.",
-        "Designed and implemented an ensemble model to boost predictive performance without compromising reliability.",
-        "Addressed edge cases to ensure robustness and refined the model’s predictive capabilities for better results.",
-      ],
-    },
-    {
-      title: "Software Engineer",
-      company: "Autosphere.ai",
-      duration: "March 2024 - Present",
-      type: "Full-Time",
-      responsibilities: [
-        "Developed and deployed AI solutions tailored to client needs, enhancing scalability and performance.",
-        "Automated processes using AI, improving operational efficiency across cross-functional teams.",
-        "Designed custom ML/AI models to address unique challenges, improving decision-making capabilities.",
-        "Performed rigorous testing to ensure the reliability and robustness of AI models in production environments.",
-        "Collaborated with clients to define requirements and delivered scalable, maintainable solutions.",
-      ],
-    },
-    {
-      title: "ML Engineer",
-      company: "DiveDeepAI",
-      duration: "August 2022 - February 2024",
-      type: "Full-Time",
-      responsibilities: [
-        "Built predictive models and analyzed large datasets to uncover trends in customer behavior.",
-        "Led development of multiple projects, including Custom Chatbot and Outscore.com, delivering AI-driven solutions.",
-        "Optimized machine learning pipelines using tools like TensorFlow, PyTorch, Flask, and Docker.",
-        "Deployed scalable AI solutions for real-world challenges, integrating end-to-end ML workflows.",
-        "Specialized in feature engineering, model validation, and optimization to drive actionable insights.",
-      ],
+  {
+    "title": "Software Engineer",
+    "company": "Autosphere.ai",
+    "duration": "March 2024 - Present",
+    "type": "Full-Time",
+    "responsibilities": [
+      "Designed and deployed modular AI agent workflows leveraging LLMs, SLMs, and VLMs to automate RPA tasks across enterprise operations.",
+      "Engineered scalable AI systems integrating OpenAI-compatible APIs, LangChain-based orchestration, and autonomous agent logic for task decomposition and execution.",
+      "Built GenAI pipelines for document parsing, structured data generation, and knowledge grounding, enhancing information accuracy and traceability.",
+      "Developed reusable components and SDKs for internal automation workflows, streamlining LLM and vision model integration into the product ecosystem.",
+      "Collaborated on system-level architecture to integrate AI with backend services, ensuring reliability, observability, and maintainability in production environments."
+    ]
+  },
+  {
+    "title": "Senior AI Engineer",
+    "company": "Rawa'a",
+    "duration": "October 2024 - January 2025",
+    "type": "Part-Time",
+    "responsibilities": [
+      "Led architectural improvements in stock price forecasting models using PyTorch and advanced LSTM variants, increasing prediction accuracy by 28%.",
+      "Designed a deep learning ensemble pipeline incorporating technical indicators, news sentiment, and historical time series for robust market forecasting.",
+      "Built an AI agent framework for automated feature extraction, data quality assessment, and experiment tracking to accelerate model development cycles.",
+      "Integrated advanced regularization, early stopping, and time-aware validation techniques to improve model generalization and stability in volatile markets."
+    ]
+  },
+  {
+    "title": "ML Engineer",
+    "company": "DiveDeepAI",
+    "duration": "August 2022 - February 2024",
+    "type": "Full-Time",
+    "responsibilities": [
+      "Delivered MVPs for diverse AI solutions across NLP, computer vision, and analytics — including chatbots, document classifiers, and vision-based quality inspection tools.",
+      "Built scalable AI pipelines using TensorFlow, PyTorch, and Docker, deploying real-time inference services in cloud and on-premise environments.",
+      "Developed interactive dashboards and business intelligence tools using Tableau and pandas to visualize model outputs and drive data-informed decisions.",
+      "Led cross-functional prototyping and deployment of AI solutions tailored for clients in fintech, retail, and healthcare, ensuring fast iteration cycles and stakeholder alignment.",
+      "Specialized in rapid experimentation, fine-tuning transformer-based models, and integrating them into usable frontend/backend systems for client demos."
+    ]
     },
   ];
 
