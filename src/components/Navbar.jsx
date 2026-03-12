@@ -1,127 +1,121 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navLinks = [
+    { href: "#about", label: "About" },
+    { href: "#projects", label: "Work" },
+    { href: "#skills", label: "Stack" },
+    { href: "#experience", label: "Experience" },
+    { href: "#services", label: "Services" },
+    { href: "#contact", label: "Contact" },
+    { href: "/blogs", label: "Blogs" },
+  ];
 
   return (
-    <header className="bg-gray-900 text-gray-300 sticky top-0 z-50 shadow-md">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <header
+      className="sticky top-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled
+          ? "rgba(8,8,8,0.92)"
+          : "rgba(8,8,8,0.6)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: scrolled
+          ? "1px solid rgba(255,255,255,0.07)"
+          : "1px solid transparent",
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-5 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img
-            src="/a1png.png" // Path to the logo file
-            alt="Logo"
-            className="w-10 h-10"
-          />
-          <a
-            href="/"
-            className="text-2xl font-bold text-white hover:text-indigo-400 transition"
+        <a href="/" className="flex items-center gap-3 group">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black text-black transition-all duration-200 group-hover:scale-105"
+            style={{ background: "#ffffff" }}
           >
-            MUB
-          </a>
-        </div>
+            M
+          </div>
+          <span className="text-white font-bold text-base tracking-tight hidden sm:block">
+            Umer Bhutta
+          </span>
+        </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6">
-          <a href="/" className="hover:text-indigo-400 transition text-gray-300">
-            Home
-          </a>
-          <a href="#about" className="hover:text-indigo-400 transition text-gray-300">
-            About
-          </a>
-          <a href="#projects" className="hover:text-indigo-400 transition text-gray-300">
-            Projects
-          </a>
-          <a href="#skills" className="hover:text-indigo-400 transition text-gray-300">
-            Skills
-          </a>
-          <a href="#experience" className="hover:text-indigo-400 transition text-gray-300">
-            Experience
-          </a>
-          <a href="#services" className="hover:text-indigo-400 transition text-gray-300">
-            Services
-          </a>
-          <a href="#contact" className="hover:text-indigo-400 transition text-gray-300">
-            Contact
-          </a>
-          <a href="/blogs" className="hover:text-indigo-400 transition text-gray-300">
-            Blogs
-          </a>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
+
+        {/* Resume CTA */}
+        <a
+          href="/UmerBhutta_AL_NLP_resume.pdf"
+          download="Muhammad-Umer-Bhutta-Resume.pdf"
+          className="hidden md:flex items-center gap-2 btn-ghost text-sm py-2 px-4"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Resume
+        </a>
 
         {/* Mobile Menu Toggle */}
         <button
-          onClick={toggleMobileMenu}
-          className="md:hidden text-white hover:text-indigo-400 transition"
-          aria-label="Toggle navigation menu"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden flex flex-col gap-1.5 p-2 group"
+          aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? '✖' : '☰'}
+          <span
+            className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+          />
+          <span
+            className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+          />
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-gray-800">
-          <nav className="flex flex-col items-center gap-4 py-4">
+        <div
+          className="md:hidden border-t"
+          style={{ borderColor: "rgba(255,255,255,0.07)", background: "rgba(8,8,8,0.97)" }}
+        >
+          <nav className="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+              >
+                {link.label}
+              </a>
+            ))}
             <a
-              href="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
+              href="/UmerBhutta_AL_NLP_resume.pdf"
+              download="Muhammad-Umer-Bhutta-Resume.pdf"
+              className="mt-2 px-3 py-3 text-sm text-white border border-white/20 rounded-lg text-center hover:bg-white/5 transition-all"
             >
-              Home
-            </a>
-            <a
-              href="#about"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
-            >
-              About
-            </a>
-            <a
-              href="#projects"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
-            >
-              Projects
-            </a>
-            <a
-              href="#skills"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
-            >
-              Skills
-            </a>
-            <a
-              href="#experience"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
-            >
-              Experience
-            </a>
-            <a
-              href="#services"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
-            >
-              Services
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
-            >
-              Contact
-            </a>
-            <a
-              href="/blogs"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-indigo-400 transition text-gray-300"
-            >
-              Blogs
+              Download Resume
             </a>
           </nav>
         </div>

@@ -1,125 +1,223 @@
 import { useState, useEffect } from "react";
+import NeuralNetworkBackground from "./NeuralNetworkBackground";
 
-export default function Hero() {
-  const [projects, setProjects] = useState(0);
-  const [experience, setExperience] = useState(0);
+const ROLES = [
+  "AI Engineer",
+  "LLM Specialist",
+  "GenAI Architect",
+  "RAG Systems Builder",
+  "AI Agent Developer",
+];
+
+function useTypingEffect(words, typingSpeed = 90, pauseMs = 1800, deleteSpeed = 50) {
+  const [display, setDisplay] = useState("");
+  const [wordIdx, setWordIdx] = useState(0);
+  const [phase, setPhase] = useState("typing"); // typing | pause | deleting
 
   useEffect(() => {
-    // Function to calculate total years of experience
-    const calculateExperience = () => {
-      const experiences = [
-        { duration: "October 2024 - Present" },
-        { duration: "March 2024 - Present" },
-        { duration: "August 2021 - February 2024" },
-      ];
+    const current = words[wordIdx];
+    let timer;
 
-      let totalMonths = 0; // Track total months of experience
-      const currentDate = new Date(); // Current date
-
-      experiences.forEach(({ duration }) => {
-        const [start, end] = duration.split(" - ");
-        const startDate = new Date(start);
-        const endDate = end === "Present" ? currentDate : new Date(end);
-
-        // Calculate the difference in months
-        const months =
-          (endDate.getFullYear() - startDate.getFullYear()) * 12 +
-          (endDate.getMonth() - startDate.getMonth());
-        totalMonths += months;
-      });
-
-      // Convert total months into years
-      const totalYears = totalMonths / 12;
-
-      // Round up if experience exceeds 2.5 years
-      const roundedYears =
-        totalYears > 2.5 ? Math.ceil(totalYears) : Math.floor(totalYears);
-
-      // Set the calculated years of experience
-      setExperience(roundedYears);
-    };
-
-    // Function to fetch projects and count them
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(
-          "https://api.github.com/users/umer-bhutta-1997/repos"
-        );
-        const data = await response.json();
-        const totalProjects = data.filter((repo) => !repo.fork).length;
-        setProjects(totalProjects);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
+    if (phase === "typing") {
+      if (display.length < current.length) {
+        timer = setTimeout(() => setDisplay(current.slice(0, display.length + 1)), typingSpeed);
+      } else {
+        timer = setTimeout(() => setPhase("pause"), pauseMs);
       }
-    };
+    } else if (phase === "pause") {
+      timer = setTimeout(() => setPhase("deleting"), pauseMs / 3);
+    } else {
+      if (display.length > 0) {
+        timer = setTimeout(() => setDisplay(display.slice(0, -1)), deleteSpeed);
+      } else {
+        setWordIdx((i) => (i + 1) % words.length);
+        setPhase("typing");
+      }
+    }
 
-    calculateExperience();
-    fetchProjects();
+    return () => clearTimeout(timer);
+  }, [display, phase, wordIdx, words, typingSpeed, pauseMs, deleteSpeed]);
+
+  return display;
+}
+
+export default function Hero() {
+  const [projects, setProjects] = useState("20");
+  const [experience, setExperience] = useState(0);
+  const role = useTypingEffect(ROLES);
+
+  useEffect(() => {
+    const experiences = [
+      { start: "August 2021", end: "Present" },
+      { start: "March 2024", end: "Present" },
+      { start: "October 2024", end: "January 2025" },
+    ];
+    const now = new Date();
+    // Earliest start
+    const earliest = new Date("August 2021");
+    const diffMonths =
+      (now.getFullYear() - earliest.getFullYear()) * 12 +
+      (now.getMonth() - earliest.getMonth());
+    setExperience(Math.floor(diffMonths / 12));
+
+    fetch("https://api.github.com/users/umer-bhutta-1997/repos")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          const count = data.filter((r) => !r.fork).length;
+          if (count > 0) setProjects(String(count));
+        }
+      })
+      .catch(() => {});
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-[300px] h-[300px] bg-indigo-500 rounded-full blur-3xl opacity-30 absolute top-10 left-10"></div>
-        <div className="w-[250px] h-[250px] bg-blue-500 rounded-full blur-3xl opacity-30 absolute bottom-20 right-20"></div>
+    <section
+      className="relative min-h-screen flex flex-col grain"
+      style={{ background: "#080808", overflow: "hidden" }}
+    >
+      {/* Neural network canvas background */}
+      <NeuralNetworkBackground />
+
+      {/* Animated blob shapes — mimics the 3D AI mesh from reference */}
+      <div
+        className="mesh-blob"
+        style={{
+          width: "55vw",
+          height: "55vw",
+          maxWidth: 700,
+          maxHeight: 700,
+          background: "radial-gradient(circle, rgba(80,80,90,0.55) 0%, rgba(30,30,38,0.4) 50%, transparent 75%)",
+          top: "-10%",
+          right: "-10%",
+          animationDuration: "14s",
+          zIndex: 2,
+        }}
+      />
+      <div
+        className="mesh-blob"
+        style={{
+          width: "35vw",
+          height: "35vw",
+          maxWidth: 420,
+          maxHeight: 420,
+          background: "radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%)",
+          bottom: "10%",
+          left: "-5%",
+          animationDuration: "18s",
+          animationDelay: "-6s",
+          zIndex: 2,
+        }}
+      />
+
+      {/* Main content */}
+      <div className="relative z-10 flex-1 flex flex-col justify-between max-w-6xl w-full mx-auto px-5 py-16 md:py-24">
+        {/* Top: Name + description */}
+        <div>
+          {/* Available badge */}
+          <div className="flex items-center gap-2 mb-8">
+            <span className="status-dot green" />
+            <span className="text-sm text-gray-400">Available for AI projects</span>
+          </div>
+
+          {/* Name — newspaper style */}
+          <h1
+            className="font-black text-white leading-none tracking-tight"
+            style={{ fontSize: "clamp(3.5rem, 10vw, 8rem)", letterSpacing: "-0.03em" }}
+          >
+            Muhammad
+            <br />
+            <span className="text-gradient">Umer Bhutta</span>
+          </h1>
+
+          {/* Typing role */}
+          <div className="mt-5 flex items-center gap-3">
+            <span
+              className="font-mono text-lg md:text-2xl text-gray-300"
+              style={{ minHeight: "2rem" }}
+            >
+              {role}
+              <span
+                className="text-white ml-0.5"
+                style={{ animation: "blink 1s step-end infinite" }}
+              >
+                |
+              </span>
+            </span>
+          </div>
+
+          {/* Tagline */}
+          <p
+            className="mt-6 text-gray-400 leading-relaxed max-w-2xl"
+            style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}
+          >
+            I design and ship production-ready AI systems — RAG pipelines,
+            LLM agents, fine-tuned models, and GenAI applications — that
+            solve real business problems and scale reliably.
+          </p>
+
+          {/* CTAs */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#projects" className="btn-white">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+              View My Work
+            </a>
+            <a href="mailto:bhutta.umer65@gmail.com" className="btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              bhutta.umer65@gmail.com
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom: Status bar */}
+        <div
+          className="mt-16 pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t"
+          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+        >
+          <div className="flex items-start gap-3">
+            <svg className="mt-0.5 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div>
+              <p className="text-white text-sm font-medium">Islamabad, Pakistan</p>
+              <p className="text-gray-500 text-xs mt-0.5">Open to remote work</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <svg className="mt-0.5 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            </svg>
+            <div>
+              <p className="text-white text-sm font-medium">AI Systems + LLMs</p>
+              <p className="text-gray-500 text-xs mt-0.5">RAG, agents, fine-tuning</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <svg className="mt-0.5 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            <div>
+              <p className="text-white text-sm font-medium">{experience}+ Years · {projects}+ Projects</p>
+              <p className="text-gray-500 text-xs mt-0.5">Production AI experience</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 px-6 md:px-20 max-w-5xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-          <span className="block text-white drop-shadow-lg font-serif">
-            السلام عليكم
-          </span>
-          I’m <span className="text-indigo-400">Muhammad Umer Bhutta</span>
-        </h1>
-        <p className="mt-6 text-lg md:text-xl text-gray-300 leading-relaxed">
-          I’m an <span className="text-indigo-400">AI Engineer</span> with
-          expertise in{" "}
-          <span className="text-blue-400">Large Language Models (LLMs)</span>,{" "}
-          <span className="text-purple-400">Natural Language Processing (NLP)</span>, and{" "}
-          <span className="text-indigo-400">scalable web solutions</span>.
-          Passionate about leveraging{" "}
-          <span className="text-indigo-400">AI</span> to drive innovation and
-          solve complex challenges.
-        </p>
-
-        {/* Metrics */}
-        <div className="mt-12 flex flex-wrap justify-center gap-16">
-          <div className="flex flex-col items-center">
-            <span className="text-5xl md:text-6xl font-bold text-indigo-400">
-              {projects}+ {/* Dynamic Projects */}
-            </span>
-            <p className="text-lg font-medium text-gray-300">
-              Projects Completed
-            </p>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-5xl md:text-6xl font-bold text-indigo-400">
-              {experience}+ {/* Dynamic Experience */}
-            </span>
-            <p className="text-lg font-medium text-gray-300">
-              Years of Experience
-            </p>
-          </div>
-        </div>
-
-        {/* Buttons */}
-        <div className="mt-10 flex flex-wrap justify-center gap-6">
-          <a
-            href="#projects"
-            className="px-6 py-3 bg-indigo-500 text-white font-bold rounded-full shadow-lg hover:bg-indigo-600 transition"
-          >
-            Projects
-          </a>
-          <a
-            href="/UmerBhutta_AL_NLP_resume.pdf" // Path to the file in the `public` folder
-            download="Muhammad-Umer-Bhutta-Resume.pdf" // Optional: rename the downloaded file
-            className="px-6 py-3 border-2 border-indigo-500 text-indigo-500 font-bold rounded-full shadow-lg hover:bg-indigo-500 hover:text-white transition"
-          >
-            Download Resume
-          </a>
-        </div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-float-s">
+        <span className="text-xs text-gray-600 tracking-widest uppercase">scroll</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b5563" strokeWidth="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
       </div>
     </section>
   );

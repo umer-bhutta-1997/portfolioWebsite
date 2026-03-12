@@ -1,39 +1,52 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer id="contact" className="bg-gray-900 text-gray-300 py-8 mt-[0.5px]">
-      <div className="max-w-6xl mx-auto px-4 text-center">
-        <p className="text-sm text-gray-400 mb-4">
-          © 2024 Umer Bhutta. All Rights Reserved.
+    <footer
+      style={{
+        background: "#080808",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        padding: "32px 0",
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-sm" style={{ color: "#374151" }}>
+          © {new Date().getFullYear()} Muhammad Umer Bhutta. All rights reserved.
         </p>
-        <div className="flex justify-center gap-6">
+        <div className="flex items-center gap-5">
           <a
             href="https://github.com/umer-bhutta-1997"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-indigo-400 transition text-xl"
+            className="transition-colors duration-200"
+            style={{ color: "#4b5563" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#4b5563")}
           >
-            <FaGithub />
+            <FaGithub size={17} />
           </a>
           <a
             href="https://www.linkedin.com/in/bhutta-umer65/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-indigo-400 transition text-xl"
+            className="transition-colors duration-200"
+            style={{ color: "#4b5563" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#4b5563")}
           >
-            <FaLinkedin />
+            <FaLinkedin size={17} />
           </a>
           <a
-            href="mailto:bhutta.umer65@gamil.com"
-            className="text-gray-300 hover:text-indigo-400 transition text-xl"
+            href="mailto:bhutta.umer65@gmail.com"
+            className="transition-colors duration-200"
+            style={{ color: "#4b5563" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#4b5563")}
           >
-            <FaEnvelope />
+            <FaEnvelope size={17} />
           </a>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer
+}
