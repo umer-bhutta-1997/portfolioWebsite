@@ -24,20 +24,115 @@
       "image": "/fine-tuning-vs-in-context.png"
     },
     {
-    "title": "Introduction to LangChain: Building Blocks for LLM Applications",
-    "slug": "introduction-to-langchain-llm-applications",
-    "description": "Learn LangChain's essential building blocks like chains, prompt templates, and memory, and build a conversational RAG system using Python, Hugging Face, and open-source LLMs like Llama 3.",
-    "author": "Muhammad Umer Bhutta",
-    "date": "2025-05-24",
-    "image": "/langchain-intro.png"
+      "title": "Introduction to LangChain: Building Blocks for LLM Applications",
+      "slug": "introduction-to-langchain-llm-applications",
+      "description": "Learn LangChain's essential building blocks like chains, prompt templates, and memory, and build a conversational RAG system using Python, Hugging Face, and open-source LLMs like Llama 3.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2025-05-24",
+      "image": "/langchain-intro.png"
     },
     {
-    "title": "LangGraph 101: Building Stateful AI Workflows in Python",
-    "slug": "langgraph-101-building-stateful-ai-workflows-in-python",
-    "description": "A beginner-friendly guide to LangGraph, covering Python building blocks, core concepts like state, nodes, edges, conditional logic, tools, and messages for building stateful AI agent workflows on top of LangChain.",
-    "author": "Muhammad Umer Bhutta",
-    "date": "2025-06-11",
-    "image": "/langgraph-101.png"
+      "title": "LangGraph 101: Building Stateful AI Workflows in Python",
+      "slug": "langgraph-101-building-stateful-ai-workflows-in-python",
+      "description": "A beginner-friendly guide to LangGraph, covering Python building blocks, core concepts like state, nodes, edges, conditional logic, tools, and messages for building stateful AI agent workflows on top of LangChain.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2025-06-11",
+      "image": "/langgraph-101.png"
+    },
+    {
+      "title": "GPT-5.4: Inside OpenAI's Most Powerful Unified AI Model",
+      "slug": "gpt-5-unified-ai-powerhouse",
+      "description": "GPT-5.4 merges coding prowess with deep reasoning into one unified model — routing to the right capability automatically. Timeline of GPT-5 through 5.4, deprecations, benchmark scores, and migration guide.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-02",
+      "image": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Claude 4.5: Anthropic's Agentic AI That Works Autonomously for Hours",
+      "slug": "claude-45-agentic-ai-hours",
+      "description": "Claude Sonnet 4.5 holds the #1 SWE-bench score at 77.2%, maintained focus for 30+ hours on complex tasks, and Anthropic's new Agent SDK lets you build persistent AI employees. Here's everything you need to know.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-03",
+      "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Gemini 2.5: Google's Thinking Model and the New Frontier of AI Reasoning",
+      "slug": "gemini-25-thinking-models",
+      "description": "Gemini 2.5 doesn't just answer questions — it thinks about them first. Thinking budget control, 2M token context, Deep Think mode, IMO gold-medal mathematics, and how it's hitting 21.5% market share.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-04",
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "MCP: The Universal Standard That's Become the 'Internet' for AI Agents",
+      "slug": "mcp-protocol-ai-agents-standard",
+      "description": "15 months after Anthropic introduced it, the Model Context Protocol has 10,000+ servers and 97M monthly SDK downloads. Complete guide to building MCP servers, connecting tools, and the Linux Foundation governance.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-05",
+      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Agentic AI in 2026: From Chatbots to Autonomous Digital Workers",
+      "slug": "agentic-ai-2026-autonomous-workers",
+      "description": "The benchmark wars are over — now comes deployment reality. Multi-agent orchestration patterns, the reliability problem, governance frameworks, and the 7 key trends defining agentic AI in 2026.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-06",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "The LLM Landscape in 2026: A Practical Guide to Choosing the Right Model",
+      "slug": "llm-landscape-2026-choosing-the-right-model",
+      "description": "GPT-5.4 vs Claude Sonnet 4.5 vs Gemini 2.5 Pro vs Qwen 3.5 vs Mistral Large 3 — head-to-head benchmarks, cost calculator, and a practical decision framework for picking the right model for every use case.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-07",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "RAG in 2026: Advanced Techniques Every AI Engineer Must Know",
+      "slug": "rag-advanced-techniques-2026",
+      "description": "Hybrid search, reranking with Cohere, GraphRAG for relationship queries, and agentic RAG with model-controlled retrieval. The complete advanced RAG stack for production systems in 2026.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-08",
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Yann LeCun's AMI Labs Raises $1.03B: What It Means for the Future of AI",
+      "slug": "yann-lecun-ami-labs-billion-raise",
+      "description": "The father of deep learning just raised the largest AI seed round in history — and he's betting against current LLMs. Deep dive into LeCun's JEPA framework, world models, and why this is the most interesting bet in AI today.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-09",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Fine-Tuning LLMs in 2026: QLoRA, Unsloth & the New Efficiency Frontier",
+      "slug": "fine-tuning-2026-qlora-unsloth",
+      "description": "QLoRA cut fine-tuning costs by 10x. Unsloth made it 5x faster with 70% less VRAM. The complete 2026 guide to fine-tuning Llama 3.3, Mistral, and Qwen models — including DPO and serving with vLLM.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-10",
+      "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "Apple Reinvents Siri: Gemini 1.2T, On-Screen Awareness & the AI Assistant War",
+      "slug": "apple-siri-reimagined-2026",
+      "description": "The new Siri powered by Google's 1.2T parameter Gemini model lands with iOS 26.4. Full breakdown of on-screen awareness, cross-app intelligence, Private Cloud Compute privacy, and what it means for developers.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-11",
+      "image": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "OpenAI Acquires Promptfoo: Why AI Security & Evaluation Just Got a Massive Upgrade",
+      "slug": "openai-acquires-promptfoo-ai-security",
+      "description": "OpenAI acquired the most popular AI red-teaming framework — and it stays open source. Learn how to use Promptfoo to test, evaluate, and secure your LLM systems with automated red-teaming and CI/CD integration.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-12",
+      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "title": "AI Legislation in 2026: What Every AI Engineer Needs to Know",
+      "slug": "ai-legislation-regulation-2026",
+      "description": "EU AI Act enforcement, Washington's HB 1170 & HB 2225, Anthropic's DoD lawsuit — the complete breakdown of AI laws now in effect and what they mean for systems you're building today.",
+      "author": "Muhammad Umer Bhutta",
+      "date": "2026-03-13",
+      "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
     }
   ]
-  
