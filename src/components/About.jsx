@@ -21,10 +21,10 @@ function useReveal(delay = 0) {
 }
 
 const stats = [
-  { num: "4+",  label: "Years Building Production AI" },
-  { num: "50+", label: "AI Systems & Automations Delivered" },
-  { num: "15+", label: "LLM / Vision Models Deployed" },
-  { num: "M+",  label: "Requests Processed by My Systems" },
+  { num: "4+",       label: "Years Building Production AI" },
+  { num: "50+",      label: "AI Systems & Automations Delivered" },
+  { num: "15+",      label: "LLM / Vision Models Deployed" },
+  { num: "Millions", label: "Requests Processed by Systems" },
 ];
 
 const capabilities = [
@@ -39,12 +39,13 @@ const capabilities = [
     title: "End-to-End AI Systems",
     accent: "#4ade80",
     points: [
-      "Data pipelines & ETL architecture",
+      "Data pipelines & ETL",
       "Vector databases & RAG pipelines",
       "Model training / fine-tuning",
       "Scalable inference APIs",
       "Cloud & GPU deployment",
     ],
+    tech: ["Python", "FastAPI", "Qdrant", "Airflow", "Docker"],
   },
   {
     icon: (
@@ -54,15 +55,16 @@ const capabilities = [
         <path d="M4.93 4.93a10 10 0 0 0 0 14.14"/>
       </svg>
     ),
-    title: "LLM & Generative AI",
+    title: "LLM & Generative AI Engineering",
     accent: "#60a5fa",
     points: [
       "RAG systems & knowledge assistants",
       "Prompt engineering & tool-calling",
-      "AI agents & orchestration (LangGraph)",
+      "AI agents & orchestration frameworks",
       "LLM evaluation pipelines",
-      "Custom embeddings & retrieval",
+      "Custom embeddings & retrieval systems",
     ],
+    tech: ["LangChain", "LangGraph", "OpenAI", "Claude", "Gemini"],
   },
   {
     icon: (
@@ -78,9 +80,10 @@ const capabilities = [
       "High-performance inference pipelines",
       "GPU deployment & optimization",
       "Low-latency LLM serving (vLLM / Groq)",
-      "Monitoring, evaluation & iteration",
-      "Cost & latency optimization",
+      "Data pipelines for AI systems",
+      "Monitoring, evaluation, and iteration",
     ],
+    tech: ["vLLM", "Groq", "Kubernetes", "Prometheus", "Terraform"],
   },
   {
     icon: (
@@ -95,12 +98,33 @@ const capabilities = [
     accent: "#fb923c",
     points: [
       "OCR pipelines & document intelligence",
-      "Vision-based UI & desktop automation",
+      "Vision-based UI automation",
+      "AI-powered workflow automation",
       "RPA + LLM integration",
       "Structured data extraction",
-      "AI-powered workflow automation",
     ],
+    tech: ["OpenCV", "PaddleOCR", "Playwright", "GPT-4V", "Pytesseract"],
   },
+];
+
+const techStack = [
+  { label: "Python",      color: "#3776ab" },
+  { label: "LangChain",   color: "#4ade80" },
+  { label: "LangGraph",   color: "#4ade80" },
+  { label: "OpenAI API",  color: "#74aa9c" },
+  { label: "Claude API",  color: "#d4a96a" },
+  { label: "Gemini",      color: "#4285f4" },
+  { label: "Hugging Face",color: "#ff9d00" },
+  { label: "FastAPI",     color: "#009688" },
+  { label: "Qdrant",      color: "#dc4e41" },
+  { label: "Weaviate",    color: "#00c853" },
+  { label: "vLLM",        color: "#a78bfa" },
+  { label: "Docker",      color: "#2496ed" },
+  { label: "PostgreSQL",  color: "#336791" },
+  { label: "Redis",       color: "#dc382d" },
+  { label: "AWS",         color: "#ff9900" },
+  { label: "GCP",         color: "#4285f4" },
+  { label: "PyTorch",     color: "#ee4c2c" },
 ];
 
 const projectTypes = [
@@ -110,17 +134,17 @@ const projectTypes = [
   "Document OCR & extraction systems",
   "Conversational AI platforms",
   "AI-powered search systems",
+  "Data pipelines for AI systems",
   "LLM fine-tuning pipelines",
-  "AI analytics assistants",
-  "Multi-modal data pipelines",
+  "AI-powered analytics assistants",
 ];
 
 const exploring = [
-  "Multi-agent AI systems & orchestration frameworks",
+  "Multi-agent AI systems and orchestration frameworks",
   "Advanced RAG architectures for enterprise knowledge",
   "LLM evaluation and benchmarking frameworks",
   "Vision-language models for automation",
-  "High-performance inference with vLLM & GPU clusters",
+  "High-performance inference with vLLM and GPU clusters",
 ];
 
 export default function About() {
@@ -128,6 +152,7 @@ export default function About() {
   const photoRef  = useReveal(0);
   const bioRef    = useReveal(100);
   const statsRef  = useReveal(0);
+  const stackRef  = useReveal(0);
   const cap0Ref   = useReveal(0);
   const cap1Ref   = useReveal(80);
   const cap2Ref   = useReveal(160);
@@ -168,7 +193,7 @@ export default function About() {
                 />
                 <div
                   className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 55%)" }}
+                  style={{ background: "linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 50%)" }}
                 />
                 <div className="absolute bottom-5 left-5 right-5">
                   <p className="text-white font-bold text-lg leading-tight">Muhammad Umer Bhutta</p>
@@ -206,30 +231,31 @@ export default function About() {
               style={{ background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.2)", color: "#4ade80" }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              AI Engineer · Production AI Systems
+              AI Engineer | Building Production-Grade AI Systems
             </div>
 
             {/* Headline bio */}
             <div>
               <p className="text-white font-semibold text-xl leading-snug mb-4">
-                I design and build AI systems that go from concept to production.
+                I design and build production AI systems across LLMs, RAG pipelines, computer vision, and intelligent automation.
               </p>
               <p className="text-gray-400 leading-relaxed text-[15px]">
-                Over the past <span className="text-white font-semibold">4+ years</span> I've delivered{" "}
+                Over the past <span className="text-white font-semibold">4+ years</span> I have delivered{" "}
                 <span className="text-white font-semibold">50+ AI solutions</span> for startups, enterprises, and internal
                 platforms — ranging from LLM-powered knowledge systems and AI agents to computer vision automation and
                 large-scale data pipelines.
               </p>
               <p className="text-gray-400 leading-relaxed text-[15px] mt-3">
-                My expertise spans the full AI lifecycle:{" "}
+                My expertise spans the entire AI lifecycle:{" "}
                 <span className="text-gray-300">data ingestion, model training & fine-tuning, RAG architecture,
                 inference optimization, and scalable deployment.</span>
               </p>
               <p className="text-gray-400 leading-relaxed text-[15px] mt-3">
                 I specialize in building AI that is{" "}
                 <span className="text-white font-semibold">fast, reliable, and production-ready</span> — not just demos.
-                Whether it's RAG systems, autonomous AI agents, OCR pipelines, or enterprise knowledge assistants,
-                I can take an idea from zero to production.
+                Whether it's RAG systems, autonomous AI agents, OCR pipelines, enterprise knowledge assistants, or
+                large-scale AI infrastructure, I can take an idea from{" "}
+                <span className="text-gray-300 font-medium">concept → prototype → production.</span>
               </p>
             </div>
 
@@ -249,7 +275,7 @@ export default function About() {
               </ul>
             </div>
 
-            {/* CTA button */}
+            {/* CTA buttons */}
             <div className="flex flex-wrap gap-3">
               <a href="mailto:bhutta.umer65@gmail.com" className="btn-white inline-flex items-center gap-2">
                 Start an AI Project
@@ -283,6 +309,33 @@ export default function About() {
           ))}
         </div>
 
+        {/* ── Tech Stack Strip ── */}
+        <div ref={stackRef} className="reveal mb-12">
+          <div
+            className="card-dark px-6 py-5"
+            style={{ borderRadius: 14 }}
+          >
+            <p className="text-xs font-semibold tracking-widest uppercase text-gray-600 mb-4">
+              Tech & Tools
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {techStack.map((t, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium"
+                  style={{
+                    background: `${t.color}10`,
+                    border: `1px solid ${t.color}30`,
+                    color: t.color,
+                  }}
+                >
+                  {t.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* ── Capabilities: 2×2 grid ── */}
         <div className="mb-4">
           <p className="text-xs font-semibold tracking-widest uppercase text-gray-600 mb-6">Core Capabilities</p>
@@ -306,17 +359,37 @@ export default function About() {
                 </div>
 
                 {/* Bullet points */}
-                <ul className="flex flex-col gap-2">
+                <ul className="flex flex-col gap-2 mb-4">
                   {cap.points.map((pt, j) => (
-                    <li key={j} className="flex items-center gap-2.5 text-sm text-gray-400">
+                    <li key={j} className="flex items-start gap-2.5 text-sm text-gray-400">
                       <span
-                        className="flex-shrink-0 w-1 h-1 rounded-full"
+                        className="flex-shrink-0 mt-1.5 w-1 h-1 rounded-full"
                         style={{ background: cap.accent, opacity: 0.6 }}
                       />
                       {pt}
                     </li>
                   ))}
                 </ul>
+
+                {/* Tech tags at bottom */}
+                <div
+                  className="flex flex-wrap gap-1.5 pt-4"
+                  style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+                >
+                  {cap.tech.map((t, j) => (
+                    <span
+                      key={j}
+                      className="text-[11px] px-2 py-0.5 rounded font-mono"
+                      style={{
+                        background: `${cap.accent}0a`,
+                        color: cap.accent,
+                        border: `1px solid ${cap.accent}20`,
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -357,7 +430,8 @@ export default function About() {
             >
               <p className="text-sm text-gray-500 max-w-md leading-relaxed">
                 Every system built for{" "}
-                <span className="text-gray-300">real-world scale</span> — optimized for latency, cost, and reliability from day one.
+                <span className="text-gray-300">real-world scale</span> — optimized for latency, cost, and
+                reliability from day one.
               </p>
               <a
                 href="mailto:bhutta.umer65@gmail.com"

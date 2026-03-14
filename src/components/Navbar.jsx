@@ -17,7 +17,9 @@ function Navbar() {
     { href: "#experience", label: "Experience" },
     { href: "#services", label: "Services" },
     { href: "#contact", label: "Contact" },
+    { href: "#architectures", label: "Architectures" },
     { href: "/blogs", label: "Blogs" },
+    { href: "/case-studies", label: "Case Studies" },
   ];
 
   return (

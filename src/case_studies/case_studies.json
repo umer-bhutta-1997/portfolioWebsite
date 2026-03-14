@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Building an AI Sales Concierge for Luxury Watch Buying & Selling",
+    "slug": "ai-sales-concierge-luxury-watches",
+    "description": "Designed a domain-aware conversational AI concierge that helps buyers navigate luxury watch inventory and assists sellers in crafting stronger listings — combining retrieval, reasoning, and guided dialogue.",
+    "sector": "Commerce / Luxury Retail",
+    "stack": ["LangGraph", "RAG", "Vector Search", "FastAPI"],
+    "date": "2025-11-01",
+    "image": "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "title": "Government Directive Intelligence & Policy Tracking System",
+    "slug": "government-directive-intelligence-rag",
+    "description": "Built an AI-powered intelligence platform enabling leadership teams to search, analyze, and synthesize progress across government directives, ministry responses, and initiative-level execution data using hybrid RAG.",
+    "sector": "Government / Public Sector",
+    "stack": ["Elasticsearch", "Hybrid Search", "LLM Summarization", "FastAPI"],
+    "date": "2025-10-01",
+    "image": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "title": "AI Agent for RPA Code Generation",
+    "slug": "ai-agent-rpa-code-generation",
+    "description": "Built an AI agent that translates natural language business requirements into production-ready RPA automation scripts — decomposing intent into SDK-aligned automation steps with validation and refinement.",
+    "sector": "Enterprise Automation / Developer Tooling",
+    "stack": ["LLM Agents", "Code Generation", "Robot Framework", "Python"],
+    "date": "2025-09-01",
+    "image": "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "title": "Enterprise RAG Platform for Knowledge Search & Support",
+    "slug": "enterprise-rag-knowledge-search",
+    "description": "Engineered end-to-end retrieval-augmented generation systems for enterprise knowledge retrieval — combining hybrid search, semantic chunking, and grounded LLM generation to deliver trustworthy AI-assisted answers.",
+    "sector": "Enterprise / Knowledge Management",
+    "stack": ["RAG", "Qdrant", "Hybrid Search", "LangChain", "FastAPI"],
+    "date": "2025-08-01",
+    "image": "https://images.unsplash.com/photo-1481026469463-66327c86e544?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "title": "Document Intelligence & OCR Pipeline for Complex Records",
+    "slug": "document-intelligence-ocr-pipeline",
+    "description": "Designed a layered document intelligence pipeline that extracts structured data from scanned, multilingual, and layout-heavy documents — moving beyond raw OCR into full document understanding and field extraction.",
+    "sector": "Document Processing / Enterprise AI",
+    "stack": ["PaddleOCR", "GPT-4V", "Pytesseract", "FastAPI", "Python"],
+    "date": "2025-07-01",
+    "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "title": "Vision-Based Desktop UI Automation System",
+    "slug": "vision-based-desktop-automation",
+    "description": "Developed a perception-driven desktop automation system that targets UI elements using visual understanding and OCR rather than selectors — enabling automation in environments where traditional RPA methods break down.",
+    "sector": "Automation / Computer Vision",
+    "stack": ["OpenCV", "OCR", "Playwright", "GPT-4V", "Python"],
+    "date": "2025-06-01",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "title": "LLM Infrastructure, Inference APIs & Evaluation Pipelines",
+    "slug": "llm-infrastructure-inference-evaluation",
+    "description": "Built the production infrastructure layer for multiple AI systems — covering model serving APIs, embedding services, containerized GPU deployments, and evaluation loops that move AI from prototype to production-ready.",
+    "sector": "AI Infrastructure / MLOps",
+    "stack": ["vLLM", "FastAPI", "Docker", "Kubernetes", "Prometheus"],
+    "date": "2025-05-01",
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "title": "Multi-Agent AI Research & Applied Workflow Systems",
+    "slug": "multi-agent-ai-workflow-systems",
+    "description": "Designed and built multi-agent AI orchestration systems with specialized roles — planner, retriever, executor, critic — enabling structured reasoning, tool use, and iterative refinement for complex enterprise workflows.",
+    "sector": "Applied AI Research / Agentic Systems",
+    "stack": ["LangGraph", "Claude SDK", "Multi-Agent", "Tool Calling", "RAG"],
+    "date": "2025-04-01",
+    "image": "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=800&q=80"
+  }
+]

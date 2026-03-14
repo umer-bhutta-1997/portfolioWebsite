@@ -12,6 +12,10 @@ import Services from "./components/Services";
 import Blogs from "./components/BlogList";
 import BlogPost from "./components/BlogPost";
 import AutocoderDetails from "./components/AutocoderDetails";
+import CaseStudyList from "./components/CaseStudyList";
+import CaseStudyPost from "./components/CaseStudyPost";
+import CaseStudiesPreview from "./components/CaseStudiesPreview";
+import Architectures from "./components/Architectures";
 import matter from "gray-matter";
 
 function App() {
@@ -59,6 +63,8 @@ function App() {
                 <Experience />
                 <Services />
                 <Projects />
+                <Architectures />
+                <CaseStudiesPreview />
                 <Contact />
                 <Footer />
               </>
@@ -70,6 +76,10 @@ function App() {
 
           {/* Dynamic Blog Post Page */}
           <Route path="/blogs/:slug" element={<BlogPost />} />
+
+          {/* Case Studies */}
+          <Route path="/case-studies" element={<CaseStudyList />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyPost />} />
         </Routes>
       </div>
     </Router>
