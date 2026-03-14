@@ -172,7 +172,8 @@ const selectedSystems = [
 const scaleMetrics = [
   { num: "50+", label: "AI systems built" },
   { num: "10+", label: "RAG architectures" },
-  { num: "Millions", label: "Documents processed" },
+  { num: "15+", label: "LLM / Vision Models Deployed" },
+  { num: "20+", label: "AI agents & autonomous systems" },
   { num: "Gov+Ent", label: "Enterprise & government" },
 ];
 
