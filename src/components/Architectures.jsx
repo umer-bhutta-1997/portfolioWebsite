@@ -191,7 +191,7 @@ function SideBox({ label, iconType, tooltip, accent, bright }) {
   );
 }
 
-/* ─── Full diagram canvas ─────────────────────────────────────────────────── */
+/* ─── Vertical FlowDiagram canvas ─────────────────────────────────────────── */
 function FlowDiagram({ nodes, sideNode, accent, bright }) {
   return (
     <div style={{
@@ -237,14 +237,268 @@ function Chip({ label, accent }) {
       textTransform: "uppercase", padding: "3px 7px",
       borderRadius: 5, background: `${accent}0e`,
       border: `1px solid ${accent}28`, color: accent,
+      whiteSpace: "nowrap",
     }}>
       {label}
     </span>
   );
 }
 
+/* ─── Agentic RAG Routers — 2D Diagram ───────────────────────────────────── */
+function AgenticRAGDiagram({ accent, bright }) {
+  /* Reusable hover-aware node box */
+  function NodeBox({ label, borderColor = "rgba(255,255,255,0.15)", tooltip }) {
+    const [hov, setHov] = useState(false);
+    return (
+      <div
+        style={{ position: "relative" }}
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
+      >
+        <div style={{
+          padding: "5px 10px", borderRadius: 7,
+          background: hov ? `${borderColor}20` : `${borderColor}09`,
+          border: `1.5px solid ${hov ? borderColor : borderColor + "70"}`,
+          fontSize: 10, fontWeight: 600,
+          color: hov ? "#fff" : "rgba(255,255,255,0.75)",
+          whiteSpace: "nowrap", transition: "all 0.18s", cursor: "default",
+        }}>
+          {label}
+        </div>
+        {hov && tooltip && (
+          <div style={{
+            position: "absolute", bottom: "calc(100% + 6px)", left: "50%",
+            transform: "translateX(-50%)",
+            background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 7, padding: "5px 10px",
+            fontSize: 9, color: "rgba(255,255,255,0.72)",
+            whiteSpace: "nowrap", zIndex: 30, pointerEvents: "none",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.7)",
+          }}>
+            {tooltip}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  /* Router diamond */
+  function RouterDiamond({ size = 44 }) {
+    const inner = size * 0.68;
+    return (
+      <div style={{ position: "relative", width: size, height: size, flexShrink: 0 }}>
+        <div style={{
+          width: inner, height: inner,
+          position: "absolute",
+          top: (size - inner) / 2, left: (size - inner) / 2,
+          background: "rgba(147,197,253,0.1)",
+          border: "1.5px solid rgba(147,197,253,0.6)",
+          transform: "rotate(45deg)",
+        }} />
+        <span style={{
+          position: "absolute", top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          fontSize: 8, fontWeight: 800, color: "#93c5fd",
+          letterSpacing: "0.02em", userSelect: "none",
+        }}>
+          Router
+        </span>
+      </div>
+    );
+  }
+
+  /* Arrow inline element */
+  const Arr = ({ txt = "→", color = "rgba(255,255,255,0.22)" }) => (
+    <span style={{ fontSize: 13, color, flexShrink: 0, lineHeight: 1 }}>{txt}</span>
+  );
+
+  return (
+    <div style={{
+      background: "rgba(0,0,0,0.28)",
+      border: "1px solid rgba(255,255,255,0.06)",
+      borderRadius: 12, padding: "16px 14px",
+      display: "flex", flexDirection: "column", gap: 0,
+    }}>
+
+      {/* ── Row A: User Input ── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
+        <NodeBox
+          label="👤  User Input"
+          borderColor="#86efac"
+          tooltip="Natural language query submitted by the user"
+        />
+      </div>
+
+      {/* ── Down + submits label ── */}
+      <div style={{ fontSize: 9, color: "rgba(255,255,255,0.22)", paddingLeft: 10, marginBottom: 5 }}>
+        ↓ &nbsp;submits
+      </div>
+
+      {/* ── Row B: Query → Prompt → Retrieval Agent ↔ Router ── */}
+      <div style={{
+        display: "flex", alignItems: "center", gap: 6,
+        flexWrap: "wrap", marginBottom: 14,
+      }}>
+        <NodeBox label="Query"          borderColor="#fef08a" tooltip="Structured query built from user input" />
+        <Arr />
+        <NodeBox label="Prompt"         borderColor="#93c5fd" tooltip="Prompt template assembled for the retrieval agent" />
+        <Arr />
+        <NodeBox label="Retrieval Agent" borderColor="#fef08a" tooltip="Orchestrator that selects and invokes tools" />
+        <Arr txt="↔" color="rgba(147,197,253,0.5)" />
+        <RouterDiamond size={44} />
+      </div>
+
+      {/* ── Row C: Tools panel (left) + Right routing (right) ── */}
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+
+        {/* LEFT: numbered lines + Tools Panel + LLM + Output */}
+        <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", gap: 0 }}>
+
+          {/* Numbered dashed connection indicators (1–4) */}
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-around", height: 20, marginBottom: 2 }}>
+            {[1, 2, 3, 4].map(n => (
+              <div key={n} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+                <span style={{
+                  width: 15, height: 15, borderRadius: "50%",
+                  border: "1px dashed rgba(255,255,255,0.2)",
+                  fontSize: 8, color: "rgba(255,255,255,0.38)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0,
+                }}>{n}</span>
+                <div style={{ width: 1, height: 4, borderLeft: "1px dashed rgba(255,255,255,0.1)" }} />
+              </div>
+            ))}
+          </div>
+
+          {/* Tools panel (dashed border) */}
+          <div style={{
+            border: "1.5px dashed rgba(254,240,138,0.32)",
+            borderRadius: 10, padding: "10px 12px", marginBottom: 10,
+          }}>
+            <p style={{
+              fontSize: 9, fontWeight: 800, letterSpacing: "0.1em",
+              textTransform: "uppercase", color: "rgba(254,240,138,0.6)",
+              margin: "0 0 8px",
+            }}>
+              Tools
+            </p>
+            {[
+              { n: 1, label: "Vector Search A",        tooltip: "Semantic search over knowledge base A" },
+              { n: 2, label: "Vector Search B",        tooltip: "Semantic search over knowledge base B" },
+              { n: 3, label: "Web Search",             tooltip: "Real-time web search for live data" },
+              { n: 4, label: "Recommendation System",  tooltip: "Personalised ranking and recommendation engine" },
+            ].map(({ n, label, tooltip }, i) => (
+              <div
+                key={n}
+                style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: i < 3 ? 5 : 0 }}
+              >
+                <span style={{
+                  fontSize: 8, color: "rgba(255,255,255,0.28)",
+                  width: 12, textAlign: "right", flexShrink: 0,
+                }}>{n}</span>
+                <NodeBox label={label} borderColor="rgba(255,255,255,0.18)" tooltip={tooltip} />
+              </div>
+            ))}
+          </div>
+
+          {/* Down + LLM + Output */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4 }}>
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.18)", paddingLeft: 10 }}>↓</span>
+            <NodeBox label="⚡  LLM"    borderColor="#fca5a5" tooltip="Language model generates final grounded answer" />
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.18)", paddingLeft: 10 }}>↓</span>
+            <NodeBox label="✓  Output" borderColor="#86efac" tooltip="Structured response returned to the user" />
+          </div>
+        </div>
+
+        {/* RIGHT: second Router + 3 data source branches */}
+        <div style={{ width: 185, flexShrink: 0, display: "flex", flexDirection: "column", gap: 0 }}>
+
+          {/* Router connected from Tools */}
+          <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 10 }}>
+            <Arr txt="←→" color="rgba(147,197,253,0.35)" />
+            <RouterDiamond size={44} />
+            <Arr color="rgba(147,197,253,0.35)" />
+          </div>
+
+          {/* Three data source branches */}
+          {[
+            {
+              label: "Text to SQL",
+              color: "#fca5a5",
+              sources: "PostgreSQL · MySQL · MariaDB",
+              tooltip: "Converts natural language to SQL for structured databases",
+            },
+            {
+              label: null,
+              color: "#93c5fd",
+              sources: null,
+              tooltip: "Direct data source access without additional routing",
+            },
+            {
+              label: "Semantic Search",
+              color: "#fef08a",
+              sources: "PDFs · Books · Reports",
+              tooltip: "Vector-based search over unstructured document corpora",
+            },
+          ].map((branch, i) => (
+            <div
+              key={i}
+              style={{
+                marginBottom: i < 2 ? 9 : 0,
+                paddingLeft: 10,
+                borderLeft: `2px solid rgba(255,255,255,0.07)`,
+              }}
+            >
+              {branch.label && (
+                <p style={{
+                  fontSize: 9, fontWeight: 700,
+                  color: branch.color, margin: "0 0 3px",
+                  letterSpacing: "0.02em",
+                }}>
+                  {branch.label} →
+                </p>
+              )}
+              <div
+                title={branch.tooltip}
+                style={{
+                  padding: "4px 9px", borderRadius: 6,
+                  background: `${branch.color}0d`,
+                  border: `1px solid ${branch.color}38`,
+                  fontSize: 9, fontWeight: 700, color: branch.color,
+                  letterSpacing: "0.06em", textTransform: "uppercase",
+                  cursor: "default",
+                }}
+              >
+                Data Sources
+              </div>
+              {branch.sources && (
+                <p style={{
+                  fontSize: 8, color: "rgba(255,255,255,0.26)",
+                  margin: "3px 0 0", lineHeight: 1.5,
+                }}>
+                  {branch.sources}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Architecture data ───────────────────────────────────────────────────── */
 const architectures = [
+  {
+    title: "Agentic RAG Routers",
+    status: "Production Pattern",
+    purpose: "Multi-source retrieval with intelligent routing — vector search, SQL, and semantic branches driven by a central retrieval agent.",
+    accent: "#22d3ee",
+    diagram: "agentic-rag",
+    caseStudy: "/case-studies/enterprise-rag-knowledge-search",
+    chips: ["Agentic RAG", "Multi-Source", "Tool Routing", "Vector Search", "Text-to-SQL"],
+    bottomNote: "Used for enterprise knowledge systems that need to query databases, vector stores, and documents from a single unified interface.",
+  },
   {
     title: "LLM Agent Workflow",
     status: "Production Pattern",
@@ -254,7 +508,7 @@ const architectures = [
     nodes: [
       { label: "User Request",             icon: "user",   tooltip: "Natural language input or system trigger" },
       { label: "Intent Router",            icon: "router", tooltip: "Classifies intent and routes to the correct workflow" },
-      { label: "Planner Agent",            icon: "brain",  tooltip: "Decomposes task and builds an execution plan", hasSide: true },
+      { label: "Planner Agent",            icon: "brain",  tooltip: "Decomposes task and builds an execution plan" },
       { label: "Tools / APIs / Retriever", icon: "tool",   tooltip: "Executes tool calls, API requests, or context retrieval" },
       { label: "Validator / Critic",       icon: "check",  tooltip: "Checks output quality before finalising the answer" },
       { label: "Response / Action",        icon: "send",   tooltip: "Returns structured response or triggers downstream action" },
@@ -273,7 +527,7 @@ const architectures = [
       { label: "Documents / DB / Records", icon: "doc",    tooltip: "Source documents, databases, or structured records" },
       { label: "Chunking + Metadata",      icon: "chunk",  tooltip: "Splits content into indexed units with metadata tags" },
       { label: "Embeddings + Indexing",    icon: "embed",  tooltip: "Converts chunks to vectors and stores for retrieval" },
-      { label: "Hybrid Retrieval",         icon: "search", tooltip: "Combines semantic and keyword search for precision", hasSide: true },
+      { label: "Hybrid Retrieval",         icon: "search", tooltip: "Combines semantic and keyword search for precision" },
       { label: "Prompt Assembly",          icon: "llm",    tooltip: "Constructs grounded prompt from retrieved context" },
       { label: "LLM Answer + Evidence",    icon: "send",   tooltip: "Generates answer citing retrieved context only" },
     ],
@@ -292,7 +546,7 @@ const architectures = [
       { label: "Preprocessing",            icon: "plan",  tooltip: "Image cleanup, deskew, and contrast normalisation" },
       { label: "OCR / Vision Model",       icon: "eye",   tooltip: "Extracts raw text and layout signals from the document" },
       { label: "Layout + Field Parsing",   icon: "parse", tooltip: "Detects structure, sections, and extraction targets" },
-      { label: "Validation / Cleanup",     icon: "check", tooltip: "Corrects errors, resolves ambiguity, normalises output", hasSide: true },
+      { label: "Validation / Cleanup",     icon: "check", tooltip: "Corrects errors, resolves ambiguity, normalises output" },
       { label: "Structured JSON / Data",   icon: "json",  tooltip: "Final structured output ready for downstream use" },
     ],
     sideNode: { label: "Human Review", icon: "human", tooltip: "Optional human-in-the-loop step for low-confidence outputs", connectsTo: 4 },
@@ -308,7 +562,7 @@ const architectures = [
     nodes: [
       { label: "Live Screen / Screenshot", icon: "screen", tooltip: "Captures the current UI state for analysis" },
       { label: "OCR + Detection",          icon: "eye",    tooltip: "Extracts text and detects interactive elements" },
-      { label: "Element Matching",         icon: "search", tooltip: "Matches detected elements to the intended target", hasSide: true },
+      { label: "Element Matching",         icon: "search", tooltip: "Matches detected elements to the intended target" },
       { label: "Action Planning",          icon: "brain",  tooltip: "Determines the next action based on detected state" },
       { label: "Execution Engine",         icon: "action", tooltip: "Executes click, input, or scroll with confidence threshold" },
       { label: "Task Result",              icon: "send",   tooltip: "Confirms completion or triggers retry on failure" },
@@ -325,7 +579,7 @@ const architectures = [
     caseStudy: "/case-studies/llm-infrastructure-inference-evaluation",
     nodes: [
       { label: "Frontend / Product",        icon: "frontend", tooltip: "Client app, internal tool, or external API consumer" },
-      { label: "API Gateway",               icon: "gateway",  tooltip: "Routes requests, applies auth, and enforces rate limits", hasSide: true },
+      { label: "API Gateway",               icon: "gateway",  tooltip: "Routes requests, applies auth, and enforces rate limits" },
       { label: "Inference Service",         icon: "infer",    tooltip: "Processes requests and calls model or embedding runtime" },
       { label: "Model / Embedding Runtime", icon: "llm",      tooltip: "Runs LLM or embedding model, GPU-optimised with vLLM or Groq" },
       { label: "Database / Vector Store",   icon: "db",       tooltip: "Persists results, vectors, session data, and retrieval index" },
@@ -345,7 +599,7 @@ const architectures = [
       { label: "User Intent",               icon: "intent",  tooltip: "Detects whether user is buying, selling, comparing, or exploring" },
       { label: "Preference Capture",        icon: "list",    tooltip: "Collects structured preferences through natural conversation" },
       { label: "Catalog / Listing Retrieval", icon: "book",  tooltip: "Retrieves relevant products or listings from indexed catalog" },
-      { label: "Reasoning + Comparison",    icon: "brain",   tooltip: "Analyses options and explains tradeoffs to the user", hasSide: true },
+      { label: "Reasoning + Comparison",    icon: "brain",   tooltip: "Analyses options and explains tradeoffs to the user" },
       { label: "Recommendation Engine",     icon: "star",    tooltip: "Scores and ranks options based on fit to stated preferences" },
       { label: "Guided Response",           icon: "chat",    tooltip: "Delivers recommendation with reasoning and next-step guidance" },
     ],
@@ -364,10 +618,13 @@ const principles = [
   "Continuous improvement mindset",
 ];
 
-/* ─── Architecture card ───────────────────────────────────────────────────── */
+/* ─── Architecture card — log-style, click to expand ─────────────────────── */
 function ArchCard({ arch, delay }) {
-  const [hov, setHov] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [hov, setHov]           = useState(false);
   const ref = useReveal(delay);
+
+  const isHot = expanded || hov;
 
   return (
     <div
@@ -376,67 +633,138 @@ function ArchCard({ arch, delay }) {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        display: "flex", flexDirection: "column", gap: 13,
-        padding: 20, borderRadius: 16,
+        borderRadius: 14,
         background: "#0e0e0e",
-        border: `1px solid ${hov ? arch.accent + "38" : "rgba(255,255,255,0.07)"}`,
-        boxShadow: hov ? `0 10px 40px ${arch.accent}10` : "none",
-        transform: hov ? "translateY(-3px)" : "translateY(0)",
-        transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
+        border: `1px solid ${isHot ? arch.accent + "45" : "rgba(255,255,255,0.07)"}`,
+        borderLeft: `3px solid ${isHot ? arch.accent : arch.accent + "50"}`,
+        boxShadow: expanded ? `0 12px 48px ${arch.accent}12` : "none",
+        transition: "all 0.25s cubic-bezier(0.4,0,0.2,1)",
+        overflow: "hidden",
+        cursor: "pointer",
       }}
     >
-      {/* Header */}
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 10 }}>
-        <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
-          {arch.title}
-        </p>
-        <span style={{
-          flexShrink: 0, fontSize: 9, fontWeight: 700,
-          letterSpacing: "0.07em", textTransform: "uppercase",
-          padding: "3px 8px", borderRadius: 20,
-          background: `${arch.accent}12`,
-          border: `1px solid ${arch.accent}30`,
-          color: arch.accent, whiteSpace: "nowrap",
-        }}>
-          {arch.status}
-        </span>
+      {/* ── Collapsed header — always visible ── */}
+      <div
+        onClick={() => setExpanded(v => !v)}
+        style={{ padding: "15px 18px", display: "flex", alignItems: "center", gap: 12 }}
+      >
+        {/* Accent pulse dot */}
+        <div style={{
+          width: 8, height: 8, borderRadius: "50%",
+          background: arch.accent,
+          boxShadow: isHot ? `0 0 8px ${arch.accent}` : "none",
+          flexShrink: 0, transition: "box-shadow 0.3s",
+        }} />
+
+        {/* Title + meta */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
+            <span style={{
+              fontSize: 14, fontWeight: 700, color: "#fff",
+              letterSpacing: "-0.01em", lineHeight: 1.2,
+            }}>
+              {arch.title}
+            </span>
+            <span style={{
+              fontSize: 9, fontWeight: 700, letterSpacing: "0.07em",
+              textTransform: "uppercase", padding: "2px 7px", borderRadius: 20,
+              background: `${arch.accent}12`, border: `1px solid ${arch.accent}30`,
+              color: arch.accent, whiteSpace: "nowrap",
+            }}>
+              {arch.status}
+            </span>
+          </div>
+          <p style={{
+            fontSize: 12, color: "rgba(255,255,255,0.4)",
+            margin: 0, lineHeight: 1.45,
+          }}>
+            {arch.purpose}
+          </p>
+        </div>
+
+        {/* Right: chips preview + expand chevron */}
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
+          <div style={{ display: "flex", gap: 4, flexWrap: "nowrap" }}>
+            {arch.chips.slice(0, 2).map((c, i) => (
+              <Chip key={i} label={c} accent={arch.accent} />
+            ))}
+          </div>
+          {/* Chevron */}
+          <div style={{
+            width: 26, height: 26, borderRadius: 7, flexShrink: 0,
+            background: `${arch.accent}10`,
+            border: `1px solid ${arch.accent}25`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "transform 0.35s cubic-bezier(0.4,0,0.2,1)",
+            transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+          }}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+              stroke={arch.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+        </div>
       </div>
 
-      {/* Purpose */}
-      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.43)", lineHeight: 1.55, margin: 0 }}>
-        {arch.purpose}
-      </p>
-
-      {/* Diagram */}
-      <FlowDiagram nodes={arch.nodes} sideNode={arch.sideNode} accent={arch.accent} bright={hov} />
-
-      {/* Chips */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
-        {arch.chips.map((c, i) => <Chip key={i} label={c} accent={arch.accent} />)}
-      </div>
-
-      {/* Bottom strip */}
+      {/* ── Expanded body — diagram + chips + note ── */}
       <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
-        paddingTop: 11, borderTop: "1px solid rgba(255,255,255,0.06)",
+        maxHeight: expanded ? 1400 : 0,
+        overflow: "hidden",
+        transition: "max-height 0.45s cubic-bezier(0.4,0,0.2,1)",
       }}>
-        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.33)", lineHeight: 1.5, margin: 0 }}>
-          {arch.bottomNote}
-        </p>
-        <Link
-          to={arch.caseStudy}
+        <div
           style={{
-            flexShrink: 0, fontSize: 10, fontWeight: 700,
-            color: hov ? arch.accent : "rgba(255,255,255,0.35)",
-            textDecoration: "none", display: "flex", alignItems: "center", gap: 4,
-            transition: "color 0.2s",
+            padding: "0 18px 18px",
+            borderTop: "1px solid rgba(255,255,255,0.05)",
+            paddingTop: 16,
           }}
+          onClick={e => e.stopPropagation()}
         >
-          Case study
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </Link>
+          {/* Diagram */}
+          {arch.diagram === "agentic-rag" ? (
+            <AgenticRAGDiagram accent={arch.accent} bright />
+          ) : (
+            <FlowDiagram nodes={arch.nodes} sideNode={arch.sideNode} accent={arch.accent} bright />
+          )}
+
+          {/* All chips */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 14 }}>
+            {arch.chips.map((c, i) => <Chip key={i} label={c} accent={arch.accent} />)}
+          </div>
+
+          {/* Bottom strip */}
+          <div style={{
+            display: "flex", alignItems: "center",
+            justifyContent: "space-between", gap: 12,
+            marginTop: 12, paddingTop: 12,
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+          }}>
+            <p style={{
+              fontSize: 11, color: "rgba(255,255,255,0.33)",
+              lineHeight: 1.5, margin: 0,
+            }}>
+              {arch.bottomNote}
+            </p>
+            <Link
+              to={arch.caseStudy}
+              style={{
+                flexShrink: 0, fontSize: 10, fontWeight: 700,
+                color: arch.accent, textDecoration: "none",
+                display: "flex", alignItems: "center", gap: 4,
+                transition: "opacity 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = "0.7")}
+              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+            >
+              Case study
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -452,12 +780,11 @@ export default function Architectures() {
       <div className="max-w-6xl mx-auto px-5">
 
         {/* ── Header ── */}
-        <div ref={headerRef} className="reveal mb-14">
+        <div ref={headerRef} className="reveal mb-10">
           <div style={{
             display: "flex", justifyContent: "space-between",
             alignItems: "flex-start", gap: 24, flexWrap: "wrap", marginBottom: 20,
           }}>
-            {/* Left: title + description */}
             <div style={{ flex: 1, minWidth: 260 }}>
               <p className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-3">
                 System Design
@@ -470,12 +797,11 @@ export default function Architectures() {
                 <span className="text-gray-600">I Design.</span>
               </h2>
               <p className="text-gray-500 text-[15px] leading-relaxed max-w-xl">
-                Visual breakdowns of the production AI systems I design — from data ingestion
-                and orchestration to deployment, monitoring, and human-facing products.
+                Visual breakdowns of the production AI systems I design — click any entry
+                to expand the interactive architecture diagram.
               </p>
             </div>
 
-            {/* Right: stats card */}
             <div style={{
               padding: "18px 22px", borderRadius: 14,
               background: "rgba(255,255,255,0.03)",
@@ -499,7 +825,6 @@ export default function Architectures() {
             </div>
           </div>
 
-          {/* CTA */}
           <Link
             to="/case-studies"
             className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200"
@@ -508,20 +833,20 @@ export default function Architectures() {
               border: "1px solid rgba(255,255,255,0.1)",
               color: "#fff",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.11)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+            onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.11)")}
+            onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
           >
             View Case Studies
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
             </svg>
           </Link>
         </div>
 
-        {/* ── 2-column card grid ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-14">
+        {/* ── Architecture log list ── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
           {architectures.map((arch, i) => (
-            <ArchCard key={i} arch={arch} delay={i * 50} />
+            <ArchCard key={i} arch={arch} delay={i * 40} />
           ))}
         </div>
 

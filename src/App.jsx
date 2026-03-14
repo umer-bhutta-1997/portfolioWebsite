@@ -63,7 +63,7 @@ function App() {
                 <Experience />
                 <Services />
                 <Projects />
-                <Architectures />
+                {/* <Architectures /> */}
                 <CaseStudiesPreview />
                 <Contact />
                 <Footer />
